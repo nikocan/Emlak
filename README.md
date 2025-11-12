@@ -1,56 +1,45 @@
-# 🏠 Emlak - Emlakçılar İçin SaaS Platformu
+# 🏠 Emlak - AI Destekli Emlak Yönetim Platformu
 
-Emlakçılar için profesyonel, modern ve kullanıcı dostu SaaS platformu. Next.js, React, TypeScript ve Tailwind CSS ile geliştirilmiştir. Aylık/yıllık abonelik modeliyle emlakçılara hizmet verir.
+> Modern, ölçeklenebilir ve AI destekli emlak yönetim platformu. Emlakçılar için profesyonel SaaS çözümü.
 
-## 🚀 Özellikler
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-38bdf8)](https://tailwindcss.com/)
 
-### 💼 SaaS ve Abonelik Özellikleri
-- ✅ **3 Farklı Paket** - Başlangıç (₺499/ay), Profesyonel (₺999/ay), Kurumsal (₺2499/ay)
-- ✅ **Aylık/Yıllık Abonelik** - Yıllık ödemede %17 indirim
-- ✅ **14 Gün Ücretsiz Deneme** - Kredi kartı gerekmez
-- ✅ **Paket Karşılaştırması** - Detaylı özellik tablosu
-- ✅ **Esnek Fiyatlandırma** - İlan sayısı, özellikler ve destek seviyesine göre
+## 🎯 Genel Bakış
 
-### 🎯 Emlakçı Dashboard
-- ✅ **Özet İstatistikler** - Toplam ilan, görüntülenme, lead, dönüşüm oranı
-- ✅ **Son Talepler** - Lead listesi ve durum takibi
-- ✅ **Popüler İlanlar** - En çok görüntülenen ilanlar
-- ✅ **Hızlı İşlemler** - Yeni ilan, talep görüntüleme, rapor, paket yükseltme
-- ✅ **Mock Authentication** - Giriş/kayıt sistemi (localStorage)
+Emlak, Next.js 16 ile geliştirilmiş, modüler mimariye sahip, yapay zeka destekli modern bir emlak yönetim platformudur. Emlakçıların işlerini kolaylaştırmak, verimliliği artırmak ve dijital dönüşüme yardımcı olmak için tasarlanmıştır.
 
-### 📝 İlan ve CRM Yönetimi
-- ✅ **Lead Takip Sistemi** - Yeni, iletişimde, görüşme, pazarlık, kapandı, kaybedildi durumları
-- ✅ **İlan İstatistikleri** - Görüntülenme, tıklama, favori, lead sayıları
-- ✅ **Detaylı İlan Sayfaları** - Tüm emlak özellikleri ve iletişim bilgileri
-- ✅ **Filtreleme Sistemi** - İlan tipi, kategori, şehir ve oda sayısına göre filtreleme
-- ✅ **Responsive Tasarım** - Mobil, tablet ve masaüstü uyumlu
+### 🌟 Temel Özellikler
 
-### 📊 Gelişmiş Analitik Özellikler
-- ✅ **Bölge Analizi Sayfası** - İnteraktif harita ve bölge seçimi
-- ✅ **İnteraktif Harita** - Leaflet ile harita üzerinde emlak görüntüleme
-- ✅ **Fiyat Trend Grafikleri** - Son 2 yıl aylık fiyat değişimleri (Recharts)
-- ✅ **Kategori Dağılımı** - Bar chart ile görsel istatistikler
-- ✅ **Yıllara Göre Karşılaştırma** - 2020-2024 yıllık fiyat analizi
-- ✅ **Metrekare Fiyatları** - Bölgesel m² fiyat hesaplamaları
-- ✅ **Fiyat Değişim Oranları** - 1 yıllık ve 5 yıllık değişim yüzdeleri
-- ✅ **Bölge İstatistikleri** - Ortalama, medyan, min/max fiyat bilgileri
-- ✅ **Gerçekçi Veri Seti** - 2020-2024 arası aylık fiyat geçmişi verisi
-- ✅ **12 İlçe Verisi** - İstanbul, Ankara, İzmir, Bursa, Antalya, Muğla
+- 🤖 **AI Destekli İçerik**: Otomatik ilan metni ve görsel iyileştirme
+- 📱 **Sosyal Medya Entegrasyonu**: 6 platformda tek tıkla paylaşım
+- 🗺️ **İnteraktif Harita ve Analiz**: Bölge çizme ve detaylı analitik
+- 📊 **Kapsamlı Bölge Analizi**: Fiyat trendleri ve pazar analizi
+- 🔄 **Veri Çekme Sistemi**: Otomatik emlak sitelerinden veri toplama
+- 💼 **SaaS Platform**: Abonelik tabanlı iş modeli
 
-## 🛠️ Teknolojiler
+## 📚 Dokümantasyon
 
-- **Framework:** Next.js 16 (App Router)
-- **UI Library:** React 19
-- **Stil:** Tailwind CSS 4
-- **Dil:** TypeScript
-- **Paket Yöneticisi:** npm
-- **Harita:** Leaflet & React-Leaflet
-- **Grafikler:** Recharts
-- **State Management:** React Hooks & LocalStorage
+- **[ARCHITECTURE.md](ARCHITECTURE.md)** - Mimari detayları ve teknik dokümantasyon
+- **[SCRAPER_README.md](SCRAPER_README.md)** - Veri çekme sistemi rehberi
+- **[AI_SOCIAL_MEDIA_README.md](AI_SOCIAL_MEDIA_README.md)** - AI ve sosyal medya özellikleri
 
-## 📦 Kurulum
+## 🚀 Hızlı Başlangıç
+
+### Gereksinimler
+
+- Node.js 18+ veya 20+
+- npm 9+
+
+### Kurulum
 
 ```bash
+# Repository'yi klonlayın
+git clone <repository-url>
+cd Emlak
+
 # Bağımlılıkları yükleyin
 npm install
 
@@ -60,130 +49,377 @@ npm run dev
 
 Uygulama [http://localhost:3000](http://localhost:3000) adresinde çalışacaktır.
 
-## 📂 Proje Yapısı
+### Production Build
+
+```bash
+npm run build
+npm start
+```
+
+## 🎨 Özellikler
+
+### 🤖 AI Destekli Özellikler
+
+#### Görsel İyileştirme
+- ✨ Otomatik parlaklık/kontrast ayarı
+- 📐 2x ve 4x görsel büyütme (upscaling)
+- 🎭 Arka plan kaldırma
+- 🛋️ Sanal mobilyalama (5 farklı stil)
+- 💫 HDR ve gürültü azaltma
+
+#### Metin Oluşturma
+- ✍️ Profesyonel ilan açıklamaları
+- 📝 SEO-uyumlu başlıklar
+- #️⃣ Otomatik hashtag önerileri
+- 🎭 4 farklı ton (Profesyonel, Samimi, Lüks, Arkadaşça)
+
+### 📱 Sosyal Medya Entegrasyonu
+
+**6 Platform Desteği:**
+- 📘 Facebook
+- 📸 Instagram
+- 🐦 Twitter
+- 💼 LinkedIn
+- 💚 WhatsApp
+- ✈️ Telegram
+
+**Özellikler:**
+- 🤖 AI ile otomatik post oluşturma
+- 📏 Platform limitlerini otomatik kontrol
+- 🎨 Her platform için özel format
+- 📊 Erişim tahmini
+- ⏰ Post zamanlama (hazır altyapı)
+
+### 🗺️ Harita ve Bölge Analizi
+
+- **İnteraktif Harita**: Leaflet tabanlı harita sistemi
+- **Bölge Çizme**: Polygon, rectangle, circle çizim araçları
+- **Jeospatial Filtreleme**: Ray Casting ve Haversine algoritmaları
+- **Fiyat Analizi**: Ortalama, medyan, min/max fiyatlar
+- **Trend Grafikleri**: 2020-2024 fiyat geçmişi
+- **m² Fiyat Hesaplamaları**: Bölgesel metrekare fiyatları
+
+### 🔄 Veri Çekme Sistemi (Scraper)
+
+**Desteklenen Kaynaklar:**
+- Sahibinden
+- Hepsiemlak
+- Emlakjet
+- Zingat
+
+**Özellikler:**
+- ✅ Modüler scraper mimarisi
+- ✅ Rate limiting (30 istek/dakika)
+- ✅ Retry logic (exponential backoff)
+- ✅ Veri normalizasyonu
+- ✅ Paralel veri çekme
+- ✅ Admin kontrol paneli
+
+### 💼 SaaS ve Abonelik Sistemi
+
+**3 Paket:**
+- **Başlangıç** - ₺499/ay (₺4.990/yıl)
+- **Profesyonel** - ₺999/ay (₺9.990/yıl)
+- **Kurumsal** - ₺2.499/ay (₺24.990/yıl)
+
+**Özellikler:**
+- 📊 Kullanıcı dashboard'u
+- 📈 İlan ve lead takibi
+- 💳 Esnek fiyatlandırma
+- 🎁 14 gün ücretsiz deneme
+
+## 🛠️ Teknoloji Stack
+
+### Frontend
+- **Framework**: Next.js 16 (App Router)
+- **UI Library**: React 19
+- **Styling**: Tailwind CSS 4
+- **Language**: TypeScript 5.9
+- **Maps**: Leaflet + React-Leaflet + Leaflet-Draw
+- **Charts**: Recharts
+
+### Backend (API Routes)
+- **Runtime**: Next.js API Routes
+- **Validation**: Custom validators
+- **Error Handling**: Custom error classes
+
+### AI Services (Opsiyonel)
+- **Text Generation**: OpenAI GPT-4
+- **Image Enhancement**: Stability AI
+- **Background Removal**: Remove.bg
+- **Upscaling**: Replicate (Real-ESRGAN)
+
+### Social Media APIs
+- Facebook Graph API
+- Instagram Graph API
+- Twitter API v2
+- LinkedIn Share API
+
+## 📁 Proje Yapısı
 
 ```
 Emlak/
-├── app/                          # Next.js App Router sayfaları
-│   ├── analytics/               # Bölge analizi sayfası
-│   ├── hakkimizda/              # Hakkımızda sayfası
-│   ├── iletisim/                # İletişim sayfası
-│   ├── properties/[id]/         # Dinamik emlak detay sayfası
-│   ├── globals.css              # Global stiller (Leaflet CSS dahil)
-│   ├── layout.tsx               # Ana layout
-│   └── page.tsx                 # Ana sayfa
-├── components/                  # React bileşenleri
-│   ├── CategoryDistributionChart.tsx  # Kategori dağılım grafiği
-│   ├── Footer.tsx               # Footer bileşeni
-│   ├── Header.tsx               # Header bileşeni (Analytics linki ile)
-│   ├── MapView.tsx              # İnteraktif harita bileşeni
-│   ├── PriceTrendChart.tsx      # Fiyat trend grafiği
-│   ├── PropertyCard.tsx         # Emlak kartı (favoriler ile)
-│   ├── PropertyFilter.tsx       # Filtreleme bileşeni
-│   └── YearlyComparisonChart.tsx # Yıllık karşılaştırma grafiği
-├── data/                        # Veri dosyaları
-│   ├── districts.ts             # İlçe verileri ve koordinatlar
-│   ├── priceHistory.ts          # 2020-2024 fiyat geçmişi
-│   └── properties.ts            # Emlak verileri (koordinatlar ile)
-├── hooks/                       # Custom React hooks
-│   └── useFavorites.ts          # Favoriler hook'u
-├── lib/                         # Yardımcı fonksiyonlar ve tipler
-│   ├── analytics.ts             # Analitik hesaplama fonksiyonları
-│   ├── propertyEnhancer.ts      # Property veri zenginleştirme
-│   └── types.ts                 # TypeScript tip tanımları
-└── public/                      # Statik dosyalar
+├── app/                      # Next.js App Router
+│   ├── (pages)/              # Public pages
+│   ├── admin/                # Admin pages
+│   ├── api/                  # API endpoints
+│   │   ├── ai/               # AI services
+│   │   ├── scrape/           # Scraper API
+│   │   └── social/           # Social media API
+│   └── create-listing/       # AI-powered listing creation
+│
+├── components/               # React components
+│   ├── Header.tsx
+│   ├── DrawableMap.tsx
+│   ├── SocialMediaPostGenerator.tsx
+│   └── index.ts              # Barrel export
+│
+├── lib/                      # Core business logic
+│   ├── config/               # App configuration
+│   ├── services/             # Business services
+│   │   ├── aiService.ts
+│   │   ├── scraperService.ts
+│   │   └── socialMediaService.ts
+│   ├── scrapers/             # Scraper implementations
+│   ├── types/                # TypeScript types
+│   ├── utils/                # Utilities
+│   │   ├── api.ts
+│   │   ├── formatters.ts
+│   │   ├── validators.ts
+│   │   ├── errors.ts
+│   │   └── constants.ts
+│   └── index.ts              # Main barrel export
+│
+├── data/                     # Mock/Static data
+└── public/                   # Static assets
 
+Total: 57 TypeScript files
 ```
 
-## 🎯 Kullanım
+## 🔧 Konfigürasyon
 
-### Geliştirme Sunucusu
-```bash
-npm run dev
+### Environment Variables
+
+`.env.local` dosyası oluşturun:
+
+```env
+# App
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+
+# AI Services (Opsiyonel)
+OPENAI_API_KEY=sk-...
+STABILITY_API_KEY=sk-...
+REMOVEBG_API_KEY=...
+REPLICATE_API_TOKEN=r8_...
+
+# Social Media (Opsiyonel)
+FACEBOOK_APP_ID=...
+FACEBOOK_APP_SECRET=...
+INSTAGRAM_CLIENT_ID=...
+# ... etc
 ```
 
-### Production Build
+## 📊 Kullanım Örnekleri
+
+### AI ile İlan Oluşturma
+
+```typescript
+import { aiService } from '@/lib/services'
+
+const result = await aiService.process({
+  feature: AIFeature.DESCRIPTION_GENERATION,
+  input: '',
+  options: {
+    property: {
+      type: 'Daire',
+      city: 'İstanbul',
+      district: 'Beşiktaş',
+      area: 150,
+      rooms: '3+1',
+      price: 5000000
+    },
+    tone: 'professional',
+    includeEmojis: true
+  }
+})
+```
+
+### Sosyal Medya Post'u Oluşturma
+
+```typescript
+import { socialMediaService } from '@/lib/services'
+
+const posts = await socialMediaService.generatePost({
+  property: { /* ... */ },
+  platforms: [SocialPlatform.FACEBOOK, SocialPlatform.INSTAGRAM],
+  useAI: true,
+  aiOptions: {
+    tone: 'casual',
+    includeEmojis: true
+  }
+})
+```
+
+### Veri Çekme
+
+```typescript
+import { scraperService } from '@/lib/services'
+
+const result = await scraperService.scrape(
+  ScraperSource.SAHIBINDEN,
+  'İstanbul',
+  'Beşiktaş',
+  { maxPages: 2 }
+)
+```
+
+## 🎯 Kullanım Senaryoları
+
+### 1. İlan Oluşturma
+**URL**: `/create-listing`
+
+1. Temel bilgileri girin (konum, fiyat, alan)
+2. AI ile otomatik metin oluştur
+3. Görselleri yükle ve iyileştir
+4. Sosyal medya için post oluştur
+5. Tümünü tek tıkla paylaş
+
+### 2. Bölge Analizi
+**URL**: `/analytics`
+
+1. Şehir ve ilçe seçin
+2. Haritada bölge çizin
+3. Detaylı istatistikleri görün
+4. Fiyat trendlerini inceleyin
+
+### 3. Veri Çekme
+**URL**: `/admin/scrapers`
+
+1. Kaynak sitesini seçin
+2. Lokasyon belirleyin
+3. Veri çekme işlemini başlatın
+4. Sonuçları görüntüleyin
+
+## 🧪 Testing
+
 ```bash
+# Run tests (when implemented)
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Coverage
+npm run test:coverage
+```
+
+## 📦 Build & Deploy
+
+### Vercel'e Deploy
+
+```bash
+# Vercel CLI ile
+vercel
+
+# Veya GitHub entegrasyonu ile otomatik deploy
+```
+
+### Diğer Platformlar
+
+```bash
+# Production build
 npm run build
-npm run start
+
+# Start production server
+npm start
 ```
 
-### Kod Kalitesi Kontrolü
+## 🔒 Güvenlik
+
+- ✅ TypeScript ile tip güvenliği
+- ✅ Input validation
+- ✅ Rate limiting
+- ✅ Error handling
+- ✅ Env variable yönetimi
+- ✅ Secure API endpoints
+
+## ⚡ Performans
+
+- ✅ Server Components (default)
+- ✅ Dynamic imports
+- ✅ Image optimization
+- ✅ Code splitting
+- ✅ Memoization
+- ✅ Caching strategies
+
+## 🐛 Troubleshooting
+
+### Harita Görünmüyor
 ```bash
-npm run lint
+# Leaflet CSS'in yüklendiğinden emin olun
+# app/globals.css kontrol edin
 ```
 
-## 🌟 Özellikler Detayı
+### AI Özellikleri Çalışmıyor
+```bash
+# API key'lerini kontrol edin
+# Şu an mock mode'da çalışıyor, gerçek API key ekleyin
+```
 
-### Ana Sayfa
-- Büyük hero section ile çarpıcı giriş
-- İstatistik kartları (Toplam ilan, satılık, kiralık sayıları)
-- Filtreleme sistemi
-- Tüm ilanları grid layout ile gösterim
-- "Neden Biz?" bölümü
+### Scraper Hataları
+```bash
+# Rate limiting aktif olabilir
+# robots.txt ve ToS kontrol edin
+```
 
-### İlan Detay Sayfası
-- Büyük görsel alan
-- Detaylı özellikler (oda sayısı, banyo, alan, kat, ısıtma vb.)
-- Özelliklerin listesi
-- Danışman bilgileri
-- İletişim formu
+## 📈 Roadmap
 
-### Filtreleme
-- İlan tipi (Satılık/Kiralık)
-- Kategori (Daire, Villa, Ofis, Arsa, Dükkan)
-- Şehir
-- Minimum oda sayısı
+### v1.1 (Q2 2024)
+- [ ] Gerçek veritabanı entegrasyonu (PostgreSQL)
+- [ ] Redis caching
+- [ ] Real-time notifications
+- [ ] Advanced search filters
 
-### Favoriler
-- İlanları favorilere ekleme/çıkarma
-- LocalStorage ile kalıcı saklama
-- Kalp ikonu ile görsel geri bildirim
+### v1.2 (Q3 2024)
+- [ ] Mobile app (React Native)
+- [ ] Multi-language support
+- [ ] Dark mode
+- [ ] Virtual tours (360°)
 
-### 📊 Bölge Analizi Sayfası
-- **Şehir ve İlçe Seçimi**: Dropdown menüler ile bölge seçimi
-- **İnteraktif Harita**: Leaflet haritası üzerinde ilanları görüntüleme
-- **Harita Özellikleri**:
-  - Her emlak için marker (işaretleyici)
-  - Popup ile hızlı bilgi (fiyat, m², detay linki)
-  - Bölge sınırları gösterimi
-  - Otomatik zoom ve merkez ayarı
-- **Fiyat Trend Grafiği**:
-  - Son 24 ay fiyat değişimi
-  - Çift eksenli grafik (ortalama fiyat + m² fiyat)
-  - İnteraktif tooltip'ler
-- **Kategori Dağılımı**: Bar chart ile emlak tiplerinin dağılımı
-- **Yıllara Göre Karşılaştırma**: 2020-2024 yıllık ortalama fiyat değişimi
-- **İstatistik Kartları**:
-  - Toplam ilan sayısı
-  - Ortalama fiyat
-  - Metrekare fiyatı
-  - Yıllık değişim oranı
-- **Detaylı İstatistikler**:
-  - 5 yıllık değişim yüzdesi
-  - Medyan fiyat
-  - Minimum/Maksimum fiyatlar
-  - Kategori bazlı dağılım
+### v2.0 (Q4 2024)
+- [ ] Microservices architecture
+- [ ] GraphQL API
+- [ ] WebSocket real-time updates
+- [ ] Advanced AI features
 
-### 📈 Veri Seti
-- **12 İlçe**: Beşiktaş, Maslak, Bahçeşehir, Etiler, Ataşehir, Çankaya, Kızılay, Çeşme, Karşıyaka, Nilüfer, Konyaaltı, Datça
-- **Fiyat Geçmişi**: 2020-2024 arası aylık veriler (58 ay)
-- **Her İlçe İçin**:
-  - Koordinat bilgisi (enlem/boylam)
-  - Bölge sınırları
-  - Ortalama fiyatlar
-  - Metrekare fiyatları
-  - İşlem sayıları
-  - Fiyat değişim oranları
+## 🤝 Contributing
 
-## 📝 Lisans
+Contributions are welcome! Please read our [Contributing Guidelines](CONTRIBUTING.md) first.
 
-Bu proje MIT lisansı altında lisanslanmıştır.
+## 📄 License
 
-## 👥 Katkıda Bulunma
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Katkılarınızı bekliyoruz! Pull request göndermekten çekinmeyin.
+## 👥 Team
 
-## 📧 İletişim
+- **Development Team** - Initial work and maintenance
+- **Contributors** - See the list of [contributors](https://github.com/yourrepo/contributors)
 
-Sorularınız için: info@emlak.com
+## 🙏 Acknowledgments
+
+- Next.js team for the amazing framework
+- React team for the UI library
+- Leaflet for the mapping solution
+- All open-source contributors
+
+## 📞 İletişim
+
+- **Issues**: [GitHub Issues](https://github.com/yourrepo/issues)
+- **Email**: support@example.com
+- **Website**: https://yourdomain.com
+
+---
+
+**Made with ❤️ by Development Team**
+
+**Version**: 1.0.0 | **Last Updated**: 2024-01-15
