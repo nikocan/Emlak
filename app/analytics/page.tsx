@@ -14,7 +14,7 @@ import { calculateRegionAnalytics, calculatePriceChange, formatCurrency } from '
 import { DistrictData } from '@/lib/types'
 
 // Dynamic import for map to avoid SSR issues
-const MapView = dynamic(() => import('@/components/MapView'), {
+const DrawableMap = dynamic(() => import('@/components/DrawableMap'), {
   ssr: false,
   loading: () => <div className="w-full h-[500px] bg-gray-200 rounded-lg flex items-center justify-center">Harita yükleniyor...</div>
 })
@@ -22,6 +22,7 @@ const MapView = dynamic(() => import('@/components/MapView'), {
 export default function AnalyticsPage() {
   const [selectedCity, setSelectedCity] = useState<string>('İstanbul')
   const [selectedDistrict, setSelectedDistrict] = useState<string>('Beşiktaş')
+  const [drawnAreaProperties, setDrawnAreaProperties] = useState<typeof properties | null>(null)
 
   // Seçili şehrin ilçelerini al
   const cityDistricts = useMemo(() => {
@@ -64,6 +65,43 @@ export default function AnalyticsPage() {
   }, [selectedDistrict, selectedCity])
 
   const cities = Array.from(new Set(districts.map(d => d.city)))
+
+  // Çizilen alan analitikleri
+  const drawnAreaAnalytics = useMemo(() => {
+    if (!drawnAreaProperties || drawnAreaProperties.length === 0) return null
+
+    const prices = drawnAreaProperties.map(p => p.priceNumeric)
+    const pricesPerSqm = drawnAreaProperties.map(p => p.pricePerSqm)
+
+    const avgPrice = prices.reduce((a, b) => a + b, 0) / prices.length
+    const minPrice = Math.min(...prices)
+    const maxPrice = Math.max(...prices)
+    const avgPricePerSqm = pricesPerSqm.reduce((a, b) => a + b, 0) / pricesPerSqm.length
+
+    const sortedPrices = [...prices].sort((a, b) => a - b)
+    const medianPrice = sortedPrices.length % 2 === 0
+      ? (sortedPrices[sortedPrices.length / 2 - 1] + sortedPrices[sortedPrices.length / 2]) / 2
+      : sortedPrices[Math.floor(sortedPrices.length / 2)]
+
+    const typeDistribution = drawnAreaProperties.reduce((acc, p) => {
+      acc[p.type] = (acc[p.type] || 0) + 1
+      return acc
+    }, {} as Record<string, number>)
+
+    return {
+      count: drawnAreaProperties.length,
+      avgPrice,
+      minPrice,
+      maxPrice,
+      medianPrice,
+      avgPricePerSqm,
+      typeDistribution
+    }
+  }, [drawnAreaProperties])
+
+  const handleShapeDrawn = (filteredProperties: typeof properties) => {
+    setDrawnAreaProperties(filteredProperties)
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -160,17 +198,120 @@ export default function AnalyticsPage() {
           </div>
         )}
 
-        {/* Map */}
+        {/* Map with Drawing Tools */}
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Harita Görünümü</h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-2xl font-bold text-gray-900">İnteraktif Harita</h2>
+            <div className="text-sm text-gray-600">
+              Sol üst köşedeki araçları kullanarak haritada bölge çizin
+            </div>
+          </div>
           <div className="h-[500px]">
-            <MapView
+            <DrawableMap
               properties={districtProperties}
-              selectedDistrict={districtData}
-              showDistricts={true}
+              onShapeDrawn={handleShapeDrawn}
+              center={districtData ? [districtData.coordinates.lat, districtData.coordinates.lng] : undefined}
+              zoom={12}
             />
           </div>
         </div>
+
+        {/* Drawn Area Analysis */}
+        {drawnAreaAnalytics && (
+          <div className="bg-gradient-to-br from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-lg shadow-lg p-6 mb-8">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Çizilen Bölge Analizi</h2>
+              <button
+                onClick={() => setDrawnAreaProperties(null)}
+                className="text-sm text-blue-600 hover:text-blue-800 underline"
+              >
+                Temizle
+              </button>
+            </div>
+
+            {/* Key Stats for Drawn Area */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <div className="bg-white rounded-lg shadow-md p-4">
+                <div className="text-sm text-gray-600 mb-1">Toplam İlan</div>
+                <div className="text-3xl font-bold text-blue-600">{drawnAreaAnalytics.count}</div>
+                <div className="text-xs text-gray-500 mt-1">Seçili bölgede</div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow-md p-4">
+                <div className="text-sm text-gray-600 mb-1">Ortalama Fiyat</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {formatCurrency(drawnAreaAnalytics.avgPrice)}
+                </div>
+                <div className="text-xs text-gray-500 mt-1">
+                  Medyan: {formatCurrency(drawnAreaAnalytics.medianPrice)}
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow-md p-4">
+                <div className="text-sm text-gray-600 mb-1">Fiyat Aralığı</div>
+                <div className="text-lg font-bold text-gray-900">
+                  {formatCurrency(drawnAreaAnalytics.minPrice)}
+                </div>
+                <div className="text-xs text-gray-500">
+                  - {formatCurrency(drawnAreaAnalytics.maxPrice)}
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow-md p-4">
+                <div className="text-sm text-gray-600 mb-1">m² Fiyatı</div>
+                <div className="text-2xl font-bold text-blue-600">
+                  {formatCurrency(drawnAreaAnalytics.avgPricePerSqm)}/m²
+                </div>
+                <div className="text-xs text-gray-500 mt-1">Ortalama</div>
+              </div>
+            </div>
+
+            {/* Type Distribution */}
+            <div className="bg-white rounded-lg shadow-md p-4">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">İlan Tipi Dağılımı</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                {Object.entries(drawnAreaAnalytics.typeDistribution).map(([type, count]) => (
+                  <div key={type} className="bg-blue-50 rounded-lg p-3 text-center">
+                    <div className="text-2xl font-bold text-blue-600">{count}</div>
+                    <div className="text-xs text-gray-600">{type}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Comparison with District */}
+            <div className="mt-6 bg-white rounded-lg shadow-md p-4">
+              <h3 className="text-lg font-bold text-gray-900 mb-4">İlçe ile Karşılaştırma</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="border-l-4 border-blue-600 pl-4">
+                  <div className="text-sm text-gray-600 mb-1">Ortalama Fiyat Farkı</div>
+                  <div className={`text-xl font-bold ${drawnAreaAnalytics.avgPrice > analytics.statistics.averagePrice ? 'text-red-600' : 'text-green-600'}`}>
+                    {drawnAreaAnalytics.avgPrice > analytics.statistics.averagePrice ? '+' : ''}
+                    {(((drawnAreaAnalytics.avgPrice - analytics.statistics.averagePrice) / analytics.statistics.averagePrice) * 100).toFixed(1)}%
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">İlçe ortalamasına göre</div>
+                </div>
+
+                <div className="border-l-4 border-green-600 pl-4">
+                  <div className="text-sm text-gray-600 mb-1">m² Fiyat Farkı</div>
+                  <div className={`text-xl font-bold ${drawnAreaAnalytics.avgPricePerSqm > analytics.statistics.averagePricePerSqm ? 'text-red-600' : 'text-green-600'}`}>
+                    {drawnAreaAnalytics.avgPricePerSqm > analytics.statistics.averagePricePerSqm ? '+' : ''}
+                    {(((drawnAreaAnalytics.avgPricePerSqm - analytics.statistics.averagePricePerSqm) / analytics.statistics.averagePricePerSqm) * 100).toFixed(1)}%
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">İlçe ortalamasına göre</div>
+                </div>
+
+                <div className="border-l-4 border-purple-600 pl-4">
+                  <div className="text-sm text-gray-600 mb-1">İlan Yoğunluğu</div>
+                  <div className="text-xl font-bold text-gray-900">
+                    {((drawnAreaAnalytics.count / analytics.statistics.totalCount) * 100).toFixed(1)}%
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">Toplam ilanların oranı</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Charts Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
