@@ -1,6 +1,7 @@
 import { Property } from '@/lib/types'
+import { enhanceProperties } from '@/lib/propertyEnhancer'
 
-export const properties: Property[] = [
+const rawProperties = [
   {
     id: 1,
     title: 'Deniz Manzaralı Lüks Villa',
@@ -356,6 +357,9 @@ export const properties: Property[] = [
     createdAt: '2024-03-15'
   }
 ]
+
+// Properties'i koordinat ve metrekare fiyatı ile zenginleştir
+export const properties: Property[] = enhanceProperties(rawProperties)
 
 export function getPropertyById(id: number): Property | undefined {
   return properties.find(p => p.id === id)

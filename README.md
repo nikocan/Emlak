@@ -4,6 +4,7 @@ Modern, responsive ve kullanıcı dostu bir emlak uygulaması. Next.js, React, T
 
 ## 🚀 Özellikler
 
+### Temel Özellikler
 - ✅ **Ana Sayfa** - Hero section, istatistikler ve öne çıkan ilanlar
 - ✅ **İlan Listeleme** - 12+ örnek emlak ilanı
 - ✅ **Detaylı İlan Sayfaları** - Tüm emlak özellikleri ve iletişim bilgileri
@@ -14,6 +15,18 @@ Modern, responsive ve kullanıcı dostu bir emlak uygulaması. Next.js, React, T
 - ✅ **Responsive Tasarım** - Mobil, tablet ve masaüstü uyumlu
 - ✅ **Modern UI/UX** - Tailwind CSS ile şık ve kullanıcı dostu arayüz
 
+### 📊 Gelişmiş Analitik Özellikler
+- ✅ **Bölge Analizi Sayfası** - İnteraktif harita ve bölge seçimi
+- ✅ **İnteraktif Harita** - Leaflet ile harita üzerinde emlak görüntüleme
+- ✅ **Fiyat Trend Grafikleri** - Son 2 yıl aylık fiyat değişimleri (Recharts)
+- ✅ **Kategori Dağılımı** - Bar chart ile görsel istatistikler
+- ✅ **Yıllara Göre Karşılaştırma** - 2020-2024 yıllık fiyat analizi
+- ✅ **Metrekare Fiyatları** - Bölgesel m² fiyat hesaplamaları
+- ✅ **Fiyat Değişim Oranları** - 1 yıllık ve 5 yıllık değişim yüzdeleri
+- ✅ **Bölge İstatistikleri** - Ortalama, medyan, min/max fiyat bilgileri
+- ✅ **Gerçekçi Veri Seti** - 2020-2024 arası aylık fiyat geçmişi verisi
+- ✅ **12 İlçe Verisi** - İstanbul, Ankara, İzmir, Bursa, Antalya, Muğla
+
 ## 🛠️ Teknolojiler
 
 - **Framework:** Next.js 16 (App Router)
@@ -21,6 +34,9 @@ Modern, responsive ve kullanıcı dostu bir emlak uygulaması. Next.js, React, T
 - **Stil:** Tailwind CSS 4
 - **Dil:** TypeScript
 - **Paket Yöneticisi:** npm
+- **Harita:** Leaflet & React-Leaflet
+- **Grafikler:** Recharts
+- **State Management:** React Hooks & LocalStorage
 
 ## 📦 Kurulum
 
@@ -38,25 +54,34 @@ Uygulama [http://localhost:3000](http://localhost:3000) adresinde çalışacakt�
 
 ```
 Emlak/
-├── app/                    # Next.js App Router sayfaları
-│   ├── hakkimizda/        # Hakkımızda sayfası
-│   ├── iletisim/          # İletişim sayfası
-│   ├── properties/[id]/   # Dinamik emlak detay sayfası
-│   ├── globals.css        # Global stiller
-│   ├── layout.tsx         # Ana layout
-│   └── page.tsx           # Ana sayfa
-├── components/            # React bileşenleri
-│   ├── Footer.tsx         # Footer bileşeni
-│   ├── Header.tsx         # Header bileşeni
-│   ├── PropertyCard.tsx   # Emlak kartı bileşeni
-│   └── PropertyFilter.tsx # Filtreleme bileşeni
-├── data/                  # Veri dosyaları
-│   └── properties.ts      # Örnek emlak verileri
-├── hooks/                 # Custom React hooks
-│   └── useFavorites.ts    # Favoriler hook'u
-├── lib/                   # Yardımcı fonksiyonlar ve tipler
-│   └── types.ts           # TypeScript tip tanımları
-└── public/                # Statik dosyalar
+├── app/                          # Next.js App Router sayfaları
+│   ├── analytics/               # Bölge analizi sayfası
+│   ├── hakkimizda/              # Hakkımızda sayfası
+│   ├── iletisim/                # İletişim sayfası
+│   ├── properties/[id]/         # Dinamik emlak detay sayfası
+│   ├── globals.css              # Global stiller (Leaflet CSS dahil)
+│   ├── layout.tsx               # Ana layout
+│   └── page.tsx                 # Ana sayfa
+├── components/                  # React bileşenleri
+│   ├── CategoryDistributionChart.tsx  # Kategori dağılım grafiği
+│   ├── Footer.tsx               # Footer bileşeni
+│   ├── Header.tsx               # Header bileşeni (Analytics linki ile)
+│   ├── MapView.tsx              # İnteraktif harita bileşeni
+│   ├── PriceTrendChart.tsx      # Fiyat trend grafiği
+│   ├── PropertyCard.tsx         # Emlak kartı (favoriler ile)
+│   ├── PropertyFilter.tsx       # Filtreleme bileşeni
+│   └── YearlyComparisonChart.tsx # Yıllık karşılaştırma grafiği
+├── data/                        # Veri dosyaları
+│   ├── districts.ts             # İlçe verileri ve koordinatlar
+│   ├── priceHistory.ts          # 2020-2024 fiyat geçmişi
+│   └── properties.ts            # Emlak verileri (koordinatlar ile)
+├── hooks/                       # Custom React hooks
+│   └── useFavorites.ts          # Favoriler hook'u
+├── lib/                         # Yardımcı fonksiyonlar ve tipler
+│   ├── analytics.ts             # Analitik hesaplama fonksiyonları
+│   ├── propertyEnhancer.ts      # Property veri zenginleştirme
+│   └── types.ts                 # TypeScript tip tanımları
+└── public/                      # Statik dosyalar
 
 ```
 
@@ -104,6 +129,42 @@ npm run lint
 - İlanları favorilere ekleme/çıkarma
 - LocalStorage ile kalıcı saklama
 - Kalp ikonu ile görsel geri bildirim
+
+### 📊 Bölge Analizi Sayfası
+- **Şehir ve İlçe Seçimi**: Dropdown menüler ile bölge seçimi
+- **İnteraktif Harita**: Leaflet haritası üzerinde ilanları görüntüleme
+- **Harita Özellikleri**:
+  - Her emlak için marker (işaretleyici)
+  - Popup ile hızlı bilgi (fiyat, m², detay linki)
+  - Bölge sınırları gösterimi
+  - Otomatik zoom ve merkez ayarı
+- **Fiyat Trend Grafiği**:
+  - Son 24 ay fiyat değişimi
+  - Çift eksenli grafik (ortalama fiyat + m² fiyat)
+  - İnteraktif tooltip'ler
+- **Kategori Dağılımı**: Bar chart ile emlak tiplerinin dağılımı
+- **Yıllara Göre Karşılaştırma**: 2020-2024 yıllık ortalama fiyat değişimi
+- **İstatistik Kartları**:
+  - Toplam ilan sayısı
+  - Ortalama fiyat
+  - Metrekare fiyatı
+  - Yıllık değişim oranı
+- **Detaylı İstatistikler**:
+  - 5 yıllık değişim yüzdesi
+  - Medyan fiyat
+  - Minimum/Maksimum fiyatlar
+  - Kategori bazlı dağılım
+
+### 📈 Veri Seti
+- **12 İlçe**: Beşiktaş, Maslak, Bahçeşehir, Etiler, Ataşehir, Çankaya, Kızılay, Çeşme, Karşıyaka, Nilüfer, Konyaaltı, Datça
+- **Fiyat Geçmişi**: 2020-2024 arası aylık veriler (58 ay)
+- **Her İlçe İçin**:
+  - Koordinat bilgisi (enlem/boylam)
+  - Bölge sınırları
+  - Ortalama fiyatlar
+  - Metrekare fiyatları
+  - İşlem sayıları
+  - Fiyat değişim oranları
 
 ## 📝 Lisans
 

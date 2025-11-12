@@ -15,6 +15,9 @@ export default function Header() {
             <Link href="/#listings" className="text-gray-700 hover:text-blue-600 transition-colors">
               İlanlar
             </Link>
+            <Link href="/analytics" className="text-gray-700 hover:text-blue-600 transition-colors">
+              Bölge Analizi
+            </Link>
             <Link href="/hakkimizda" className="text-gray-700 hover:text-blue-600 transition-colors">
               Hakkımızda
             </Link>

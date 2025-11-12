@@ -107,11 +107,27 @@ export default function Home() {
         )}
       </section>
 
+      {/* Analytics CTA */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg p-12 text-white text-center">
+          <h3 className="text-4xl font-bold mb-4">📊 Bölge Analizi</h3>
+          <p className="text-xl mb-6">
+            Harita üzerinde bölge seçin, fiyat trendlerini görüntüleyin, detaylı istatistiklere ulaşın
+          </p>
+          <a
+            href="/analytics"
+            className="inline-block bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+          >
+            Bölge Analizini Görüntüle
+          </a>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">Neden Biz?</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="text-6xl mb-4">🏆</div>
               <h4 className="text-xl font-bold text-gray-900 mb-2">Güvenilir</h4>
@@ -126,6 +142,11 @@ export default function Home() {
               <div className="text-6xl mb-4">🤝</div>
               <h4 className="text-xl font-bold text-gray-900 mb-2">Profesyonel</h4>
               <p className="text-gray-600">Uzman danışmanlarımız her zaman yanınızda</p>
+            </div>
+            <div className="text-center">
+              <div className="text-6xl mb-4">📈</div>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Analitik</h4>
+              <p className="text-gray-600">Piyasa analizi ve fiyat trendleri</p>
             </div>
           </div>
         </div>
