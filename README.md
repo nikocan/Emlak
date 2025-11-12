@@ -1,19 +1,29 @@
-# 🏠 Emlak - Gayrimenkul Portalı
+# 🏠 Emlak - Emlakçılar İçin SaaS Platformu
 
-Modern, responsive ve kullanıcı dostu bir emlak uygulaması. Next.js, React, TypeScript ve Tailwind CSS ile geliştirilmiştir.
+Emlakçılar için profesyonel, modern ve kullanıcı dostu SaaS platformu. Next.js, React, TypeScript ve Tailwind CSS ile geliştirilmiştir. Aylık/yıllık abonelik modeliyle emlakçılara hizmet verir.
 
 ## 🚀 Özellikler
 
-### Temel Özellikler
-- ✅ **Ana Sayfa** - Hero section, istatistikler ve öne çıkan ilanlar
-- ✅ **İlan Listeleme** - 12+ örnek emlak ilanı
+### 💼 SaaS ve Abonelik Özellikleri
+- ✅ **3 Farklı Paket** - Başlangıç (₺499/ay), Profesyonel (₺999/ay), Kurumsal (₺2499/ay)
+- ✅ **Aylık/Yıllık Abonelik** - Yıllık ödemede %17 indirim
+- ✅ **14 Gün Ücretsiz Deneme** - Kredi kartı gerekmez
+- ✅ **Paket Karşılaştırması** - Detaylı özellik tablosu
+- ✅ **Esnek Fiyatlandırma** - İlan sayısı, özellikler ve destek seviyesine göre
+
+### 🎯 Emlakçı Dashboard
+- ✅ **Özet İstatistikler** - Toplam ilan, görüntülenme, lead, dönüşüm oranı
+- ✅ **Son Talepler** - Lead listesi ve durum takibi
+- ✅ **Popüler İlanlar** - En çok görüntülenen ilanlar
+- ✅ **Hızlı İşlemler** - Yeni ilan, talep görüntüleme, rapor, paket yükseltme
+- ✅ **Mock Authentication** - Giriş/kayıt sistemi (localStorage)
+
+### 📝 İlan ve CRM Yönetimi
+- ✅ **Lead Takip Sistemi** - Yeni, iletişimde, görüşme, pazarlık, kapandı, kaybedildi durumları
+- ✅ **İlan İstatistikleri** - Görüntülenme, tıklama, favori, lead sayıları
 - ✅ **Detaylı İlan Sayfaları** - Tüm emlak özellikleri ve iletişim bilgileri
 - ✅ **Filtreleme Sistemi** - İlan tipi, kategori, şehir ve oda sayısına göre filtreleme
-- ✅ **Favoriler** - İlanları favorilere ekleme (localStorage ile)
-- ✅ **Hakkımızda Sayfası** - Şirket bilgileri ve ekip tanıtımı
-- ✅ **İletişim Sayfası** - İletişim formu ve bilgiler
 - ✅ **Responsive Tasarım** - Mobil, tablet ve masaüstü uyumlu
-- ✅ **Modern UI/UX** - Tailwind CSS ile şık ve kullanıcı dostu arayüz
 
 ### 📊 Gelişmiş Analitik Özellikler
 - ✅ **Bölge Analizi Sayfası** - İnteraktif harita ve bölge seçimi

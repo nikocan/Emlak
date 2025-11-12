@@ -8,12 +8,12 @@ export default function Header() {
           <Link href="/" className="text-3xl font-bold text-blue-600">
             Emlak
           </Link>
-          <nav className="flex gap-6">
+          <nav className="hidden md:flex gap-6">
             <Link href="/" className="text-gray-700 hover:text-blue-600 transition-colors">
               Ana Sayfa
             </Link>
-            <Link href="/#listings" className="text-gray-700 hover:text-blue-600 transition-colors">
-              İlanlar
+            <Link href="/pricing" className="text-gray-700 hover:text-blue-600 transition-colors">
+              Fiyatlandırma
             </Link>
             <Link href="/analytics" className="text-gray-700 hover:text-blue-600 transition-colors">
               Bölge Analizi
@@ -25,6 +25,20 @@ export default function Header() {
               İletişim
             </Link>
           </nav>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/login"
+              className="text-gray-700 hover:text-blue-600 transition-colors"
+            >
+              Giriş Yap
+            </Link>
+            <Link
+              href="/login"
+              className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Başlayın
+            </Link>
+          </div>
         </div>
       </div>
     </header>

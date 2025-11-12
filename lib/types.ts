@@ -100,3 +100,79 @@ export interface RegionAnalytics {
     priceHistory: PriceHistory[]
   }
 }
+
+// Emlakçı ve SaaS Özellikleri
+export type PlanType = 'basic' | 'pro' | 'enterprise'
+
+export interface SubscriptionPlan {
+  id: PlanType
+  name: string
+  price: {
+    monthly: number
+    yearly: number
+  }
+  features: string[]
+  limits: {
+    maxListings: number
+    maxPhotos: number
+    analytics: boolean
+    apiAccess: boolean
+    support: string
+    customDomain: boolean
+    teamMembers: number
+  }
+  popular?: boolean
+}
+
+export interface Agent {
+  id: number
+  name: string
+  email: string
+  phone: string
+  company: string
+  logo?: string
+  address?: string
+  website?: string
+  plan: PlanType
+  subscriptionStart: string
+  subscriptionEnd: string
+  verified: boolean
+  rating?: number
+  totalSales?: number
+}
+
+export interface Lead {
+  id: number
+  propertyId: number
+  agentId: number
+  name: string
+  email: string
+  phone: string
+  message: string
+  status: 'new' | 'contacted' | 'viewing' | 'negotiating' | 'closed' | 'lost'
+  source: 'website' | 'phone' | 'email' | 'referral'
+  createdAt: string
+  updatedAt: string
+  notes?: string
+}
+
+export interface PropertyStats {
+  propertyId: number
+  views: number
+  clicks: number
+  favorites: number
+  leads: number
+  phoneReveals: number
+  lastViewed?: string
+}
+
+export interface AgentDashboardStats {
+  totalListings: number
+  activeListings: number
+  totalViews: number
+  totalLeads: number
+  leadsThisMonth: number
+  conversionRate: number
+  popularProperties: Property[]
+  recentLeads: Lead[]
+}
