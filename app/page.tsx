@@ -1,69 +1,41 @@
+'use client'
+
+import { useState, useMemo } from 'react'
 import PropertyCard from '@/components/PropertyCard'
+import PropertyFilter from '@/components/PropertyFilter'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import { properties } from '@/data/properties'
+import { FilterOptions } from '@/lib/types'
 
 export default function Home() {
-  const properties = [
-    {
-      id: 1,
-      title: 'Lüks Villa',
-      location: 'İstanbul, Beşiktaş',
-      price: '15.000.000',
-      bedrooms: 4,
-      bathrooms: 3,
-      area: 250,
-      image: '/placeholder.jpg',
-      type: 'Satılık'
-    },
-    {
-      id: 2,
-      title: 'Modern Daire',
-      location: 'Ankara, Çankaya',
-      price: '3.500.000',
-      bedrooms: 3,
-      bathrooms: 2,
-      area: 150,
-      image: '/placeholder.jpg',
-      type: 'Satılık'
-    },
-    {
-      id: 3,
-      title: 'Deniz Manzaralı Villa',
-      location: 'İzmir, Çeşme',
-      price: '25.000.000',
-      bedrooms: 5,
-      bathrooms: 4,
-      area: 350,
-      image: '/placeholder.jpg',
-      type: 'Satılık'
-    },
-    {
-      id: 4,
-      title: 'Merkezi Ofis',
-      location: 'İstanbul, Maslak',
-      price: '45.000',
-      bedrooms: 0,
-      bathrooms: 2,
-      area: 120,
-      image: '/placeholder.jpg',
-      type: 'Kiralık'
-    },
-  ]
+  const [filters, setFilters] = useState<FilterOptions>({})
+
+  const filteredProperties = useMemo(() => {
+    return properties.filter(property => {
+      if (filters.type && filters.type !== 'all' && property.type !== filters.type) {
+        return false
+      }
+      if (filters.category && property.category !== filters.category) {
+        return false
+      }
+      if (filters.city && property.city !== filters.city) {
+        return false
+      }
+      if (filters.bedrooms && property.bedrooms < filters.bedrooms) {
+        return false
+      }
+      return true
+    })
+  }, [filters])
+
+  const handleFilterChange = (newFilters: FilterOptions) => {
+    setFilters(newFilters)
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold text-blue-600">Emlak</h1>
-            <nav className="flex gap-6">
-              <a href="#" className="text-gray-700 hover:text-blue-600">Ana Sayfa</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600">Satılık</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600">Kiralık</a>
-              <a href="#" className="text-gray-700 hover:text-blue-600">İletişim</a>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
@@ -74,31 +46,92 @@ export default function Home() {
             <input
               type="text"
               placeholder="Şehir, semt veya mahalle..."
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900"
+              className="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
             />
-            <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100">
+            <button className="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
               Ara
             </button>
           </div>
         </div>
       </section>
 
-      {/* Properties Grid */}
+      {/* Stats Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h3 className="text-3xl font-bold text-gray-900 mb-8">Öne Çıkan İlanlar</h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {properties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="bg-white rounded-lg shadow-md p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">{properties.length}</div>
+            <div className="text-gray-600">Toplam İlan</div>
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">
+              {properties.filter(p => p.type === 'Satılık').length}
+            </div>
+            <div className="text-gray-600">Satılık</div>
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">
+              {properties.filter(p => p.type === 'Kiralık').length}
+            </div>
+            <div className="text-gray-600">Kiralık</div>
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-6 text-center">
+            <div className="text-4xl font-bold text-blue-600 mb-2">6</div>
+            <div className="text-gray-600">Şehir</div>
+          </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 mt-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p>&copy; 2024 Emlak. Tüm hakları saklıdır.</p>
+      {/* Properties Grid */}
+      <section id="listings" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <h3 className="text-3xl font-bold text-gray-900 mb-8">Tüm İlanlar</h3>
+
+        <PropertyFilter onFilterChange={handleFilterChange} />
+
+        {filteredProperties.length > 0 ? (
+          <>
+            <div className="mb-4 text-gray-600">
+              {filteredProperties.length} ilan bulundu
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredProperties.map((property) => (
+                <PropertyCard key={property.id} property={property} />
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="text-center py-12">
+            <div className="text-6xl mb-4">🔍</div>
+            <h4 className="text-2xl font-bold text-gray-900 mb-2">İlan Bulunamadı</h4>
+            <p className="text-gray-600">Filtreleri değiştirerek tekrar deneyin</p>
+          </div>
+        )}
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 className="text-3xl font-bold text-gray-900 text-center mb-12">Neden Biz?</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-6xl mb-4">🏆</div>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Güvenilir</h4>
+              <p className="text-gray-600">Tüm ilanlarımız doğrulanmış ve günceldir</p>
+            </div>
+            <div className="text-center">
+              <div className="text-6xl mb-4">⚡</div>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Hızlı</h4>
+              <p className="text-gray-600">Aradığınız evi anında bulun</p>
+            </div>
+            <div className="text-center">
+              <div className="text-6xl mb-4">🤝</div>
+              <h4 className="text-xl font-bold text-gray-900 mb-2">Profesyonel</h4>
+              <p className="text-gray-600">Uzman danışmanlarımız her zaman yanınızda</p>
+            </div>
+          </div>
         </div>
-      </footer>
+      </section>
+
+      <Footer />
     </div>
   )
 }
